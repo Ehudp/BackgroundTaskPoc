@@ -11,16 +11,19 @@ public class BackgroundTaskController : ControllerBase
     private readonly HostedServiceSampleData _hostedServiceSampleData;
     private readonly BackgroundServiceSampleData _backgroundServiceSampleData;
     private readonly QuartzBackgroundJobSampleData _quartzBackgroundJobSampleData;
+    private readonly HangfireBackgroundJobSampleData _hangfireBackgroundJobSampleData;
 
     public BackgroundTaskController(ILogger<BackgroundTaskController> logger,
                                     HostedServiceSampleData hostedServiceSampleData,
                                     BackgroundServiceSampleData backgroundServiceSampleData,
-                                    QuartzBackgroundJobSampleData quartzBackgroundJobSampleData)
+                                    QuartzBackgroundJobSampleData quartzBackgroundJobSampleData,
+                                    HangfireBackgroundJobSampleData hangfireBackgroundJobSampleData)
     {
         _logger = logger;
         _hostedServiceSampleData = hostedServiceSampleData;
         _backgroundServiceSampleData = backgroundServiceSampleData;
         _quartzBackgroundJobSampleData = quartzBackgroundJobSampleData;
+        _hangfireBackgroundJobSampleData = hangfireBackgroundJobSampleData;
     }
 
     [HttpGet("HostedService")]
@@ -39,5 +42,11 @@ public class BackgroundTaskController : ControllerBase
     public IEnumerable<string> GetQuartzBackgroundJob()
     {
         return _quartzBackgroundJobSampleData.Data.OrderBy(item => item).TakeLast(10);
+    }
+
+    [HttpGet("HangfireBackgroundJob")]
+    public IEnumerable<string> GetHangfireBackgroundJob()
+    {
+        return _hangfireBackgroundJobSampleData.Data.OrderBy(item => item).TakeLast(10);
     }
 }

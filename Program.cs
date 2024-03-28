@@ -1,6 +1,9 @@
+using BackgroundTaskPoc.BackgroundTasks.Hangfire;
 using BackgroundTaskPoc.BackgroundTasks.Quartz;
 using BackgroundTaskPoc.BackgroundTasks.SimpleTask;
 using BackgroundTaskPoc.Data;
+using Hangfire;
+using Hangfire.MemoryStorage;
 using Quartz;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,7 +36,27 @@ builder.Services.AddQuartzHostedService(options =>
 
 builder.Services.ConfigureOptions<QuartzBackgroundJobSetup>();
 
+// Add Hangfire
+builder.Services.AddSingleton<HangfireBackgroundJobSampleData>();
+
+builder.Services.AddHangfire(configuration =>
+       {
+           configuration.UseMemoryStorage();
+       });
+
+
+builder.Services.AddSingleton<IHangfireBackgroundJob, HangfireBackgroundJobImplementation>();
+
+builder.Services.AddHangfireServer();
+
 var app = builder.Build();
+
+var serviceProvider = app.Services;
+IRecurringJobManager recurringJobManager = serviceProvider.GetRequiredService<IRecurringJobManager>();
+recurringJobManager.AddOrUpdate<IHangfireBackgroundJob>("HangfireDataJob", job => job.ExecuteAsync(), "* * * * * *"); // Every 15 second this the minimum 
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
