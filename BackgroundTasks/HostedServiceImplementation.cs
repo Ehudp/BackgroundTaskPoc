@@ -21,7 +21,7 @@ public class HostedServiceImplementation : IHostedService, IDisposable
 
     private void AddToCache(object? state)
     {
-        _data.Data.Add($"The new data was added at {DateTime.Now.ToLongTimeString()}");
+        _data.Data.Add($"Hosted Service Data, data was added at {DateTime.Now.ToLongTimeString()}");
     }
 
     public Task StopAsync(CancellationToken cancellationToken)

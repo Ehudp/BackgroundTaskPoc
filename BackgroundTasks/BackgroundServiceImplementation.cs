@@ -15,10 +15,8 @@ public class BackgroundServiceImplementation : BackgroundService
     {
         while (!stoppingToken.IsCancellationRequested)
         {
-            // Add your background task logic here
-            _data.Data.Add($"The new data was added at {DateTime.Now.ToLongTimeString()}");
+            _data.Data.Add($"Background Service Data, data was added at {DateTime.Now.ToLongTimeString()}");
 
-            // Adjust the delay as needed for your background task
             await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
         }
     }
