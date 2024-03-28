@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Options;
 using Quartz;
 
-namespace BackgroundTaskPoc;
+namespace BackgroundTaskPoc.BackgroundTasks.Quartz;
 
 public class QuartzBackgroundJobSetup : IConfigureOptions<QuartzOptions>
 {

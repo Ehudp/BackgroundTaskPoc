@@ -1,5 +1,5 @@
-using BackgroundTaskPoc;
-using BackgroundTaskPoc.BackgroundTasks;
+using BackgroundTaskPoc.BackgroundTasks.Quartz;
+using BackgroundTaskPoc.BackgroundTasks.SimpleTask;
 using BackgroundTaskPoc.Data;
 using Quartz;
 

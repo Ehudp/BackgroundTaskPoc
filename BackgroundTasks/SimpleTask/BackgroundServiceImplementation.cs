@@ -1,6 +1,6 @@
 using BackgroundTaskPoc.Data;
 
-namespace BackgroundTaskPoc.BackgroundTasks;
+namespace BackgroundTaskPoc.BackgroundTasks.SimpleTask;
 
 public class BackgroundServiceImplementation : BackgroundService
 {

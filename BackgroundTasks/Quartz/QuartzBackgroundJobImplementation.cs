@@ -1,7 +1,7 @@
 ﻿using BackgroundTaskPoc.Data;
 using Quartz;
 
-namespace BackgroundTaskPoc;
+namespace BackgroundTaskPoc.BackgroundTasks.Quartz;
 
 [DisallowConcurrentExecution]
 public class QuartzBackgroundJobImplementation : IJob
