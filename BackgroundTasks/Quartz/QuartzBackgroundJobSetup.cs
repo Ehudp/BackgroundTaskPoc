@@ -13,8 +13,9 @@ public class QuartzBackgroundJobSetup : IConfigureOptions<QuartzOptions>
             .AddTrigger(trigger =>
                 trigger
                     .ForJob(jobKey)
-                    .WithSimpleSchedule(schedule =>
-                        schedule.WithIntervalInSeconds(1).RepeatForever()));
+                                        //.WithSimpleSchedule(schedule =>schedule.WithIntervalInSeconds(1).RepeatForever()));
+                                        .WithCronSchedule("0/1 * * * * ?")); // Cron expression for every second
+
     }
 }
 
